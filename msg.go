@@ -1838,6 +1838,8 @@ func compressionLenHelperType(c map[string]int, r RR) {
 		compressionLenHelper(c, x.Email)
 	case *AFSDB:
 		compressionLenHelper(c, x.Hostname)
+	case *SRV:
+		compressionLenHelper(c, x.Target)
 	}
 }
 
@@ -1880,6 +1882,8 @@ func compressionLenSearchType(c map[string]int, r RR) (int, bool) {
 		return k + k1, true
 	case *AFSDB:
 		return compressionLenSearch(c, x.Hostname)
+	case *SRV:
+		return compressionLenSearch(c, x.Target)
 	}
 	return 0, false
 }
